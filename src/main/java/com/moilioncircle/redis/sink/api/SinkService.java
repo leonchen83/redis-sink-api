@@ -28,13 +28,14 @@ public interface SinkService extends EventListener {
     
     /**
      * ret --name name
-     * @return name
+     * @return name name
      */
     String name();
     
     /**
      * ret --config config
-     * @param config 
+     * @param config config
+     * @throws IOException IOException
      */
     void init(File config) throws IOException;
 }
