@@ -34,7 +34,7 @@ import com.moilioncircle.redis.replicator.event.PostCommandSyncEvent;
 import com.moilioncircle.redis.replicator.event.PostRdbSyncEvent;
 import com.moilioncircle.redis.replicator.event.PreCommandSyncEvent;
 import com.moilioncircle.redis.replicator.event.PreRdbSyncEvent;
-import com.moilioncircle.redis.replicator.rdb.dump.datatype.DumpKeyValuePair;
+import com.moilioncircle.redis.replicator.rdb.datatype.KeyValuePair;
 import com.moilioncircle.redis.sink.api.cmd.ClosedCommand;
 import com.moilioncircle.redis.sink.api.cmd.ClosingCommand;
 
@@ -113,7 +113,7 @@ public class AsyncEventListener implements EventListener {
                         this.executors[i].submit(() -> await(rdbBarrier));
                     }
                 }
-            } else if (event instanceof DumpKeyValuePair) {
+            } else if (event instanceof KeyValuePair) {
                 int i = count++ & (executors.length - 1);
                 this.executors[i].submit(() -> this.listener.onEvent(replicator, event));
             } else if (event instanceof Command) {

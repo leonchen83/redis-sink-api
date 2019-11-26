@@ -42,12 +42,12 @@ import com.moilioncircle.redis.sink.api.cmd.ClosingCommand;
  * @author Baoyi Chen
  */
 public class ExampleSinkService implements SinkService {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(ExampleSinkService.class);
-    
+
     private AtomicLong rdb = new AtomicLong(0L);
     private AtomicLong aof = new AtomicLong(0L);
-    
+
     @Override
     public String name() {
         return "example";
@@ -67,29 +67,29 @@ public class ExampleSinkService implements SinkService {
         if (event instanceof KeyValuePair) {
             rdb.incrementAndGet();
         }
-        
+
         if (event instanceof PostRdbSyncEvent ||
                 event instanceof PreCommandSyncEvent ||
                 event instanceof PostCommandSyncEvent ||
                 //
-                event instanceof PingCommand || 
-                event instanceof SelectCommand || 
-                event instanceof ReplConfCommand || 
-                event instanceof ClosingCommand || 
+                event instanceof PingCommand ||
+                event instanceof SelectCommand ||
+                event instanceof ReplConfCommand ||
+                event instanceof ClosingCommand ||
                 event instanceof ClosedCommand) {
-            
+
             if (event instanceof PreCommandSyncEvent) {
                 logger.info("rdb count {}", rdb.get());
             }
-            
+
             if (event instanceof PingCommand) {
                 logger.info("aof count {}", aof.get());
             }
-            
+
             if (event instanceof ClosedCommand) {
                 logger.info("rdb count {}, aof count {}", rdb.get(), aof.get());
             }
-        } else if (event instanceof Command){
+        } else if (event instanceof Command) {
             aof.incrementAndGet();
         }
     }

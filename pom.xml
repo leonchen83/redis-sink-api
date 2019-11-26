@@ -6,7 +6,7 @@
     
     <groupId>com.moilioncircle</groupId>
     <artifactId>redis-sink-api</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     
     <name>redis-sink-api</name>
     <description>redis-sink-api used in redis-rdb-cli</description>
