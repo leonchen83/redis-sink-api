@@ -78,6 +78,14 @@ public class ExampleSinkService implements SinkService {
                 event instanceof ClosingCommand || 
                 event instanceof ClosedCommand) {
             
+            if (event instanceof PreCommandSyncEvent) {
+                logger.info("rdb count {}", rdb.get());
+            }
+            
+            if (event instanceof PingCommand) {
+                logger.info("aof count {}", aof.get());
+            }
+            
             if (event instanceof ClosedCommand) {
                 logger.info("rdb count {}, aof count {}", rdb.get(), aof.get());
             }
