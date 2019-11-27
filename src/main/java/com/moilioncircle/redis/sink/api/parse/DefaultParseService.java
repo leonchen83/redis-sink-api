@@ -40,7 +40,12 @@ public class DefaultParseService implements ParseService {
     }
 
     @Override
-    public RdbVisitor getVisitor(Replicator replicator) {
+    public Replicator wrap(Replicator replicator) {
+        return replicator;
+    }
+
+    @Override
+    public RdbVisitor getRdbVisitor(Replicator replicator) {
         return new DefaultRdbVisitor(replicator);
     }
 }

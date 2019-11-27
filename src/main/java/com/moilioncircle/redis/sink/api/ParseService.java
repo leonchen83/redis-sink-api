@@ -39,10 +39,16 @@ public interface ParseService {
      * @throws IOException IOException
      */
     void init(File config) throws IOException;
+
+    /**
+     * @param replicator replicator
+     * @return Replicator replicator
+     */
+    Replicator wrap(Replicator replicator);
     
     /**
      * @param replicator replicator
      * @return RdbVisitor RdbVisitor
      */
-    RdbVisitor getVisitor(Replicator replicator);
+    RdbVisitor getRdbVisitor(Replicator replicator);
 }
