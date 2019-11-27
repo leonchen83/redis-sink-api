@@ -19,23 +19,30 @@ package com.moilioncircle.redis.sink.api;
 import java.io.File;
 import java.io.IOException;
 
-import com.moilioncircle.redis.replicator.event.EventListener;
+import com.moilioncircle.redis.replicator.Replicator;
+import com.moilioncircle.redis.replicator.rdb.RdbVisitor;
 
 /**
  * @author Baoyi Chen
  */
-public interface SinkService extends EventListener {
+public interface ParseService {
     
     /**
-     * ret --name name
-     * @return name name
+     * ret --parse parse
+     * @return parse parse
      */
-    String sink();
-    
+    String parse();
+
     /**
      * ret --config config
      * @param config config
      * @throws IOException IOException
      */
     void init(File config) throws IOException;
+    
+    /**
+     * @param replicator replicator
+     * @return RdbVisitor RdbVisitor
+     */
+    RdbVisitor getVisitor(Replicator replicator);
 }

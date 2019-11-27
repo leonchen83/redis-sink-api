@@ -49,7 +49,7 @@ public class ExampleSinkService implements SinkService {
     private AtomicLong aof = new AtomicLong(0L);
 
     @Override
-    public String name() {
+    public String sink() {
         return "example";
     }
 

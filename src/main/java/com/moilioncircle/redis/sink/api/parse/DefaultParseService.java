@@ -14,28 +14,33 @@
  * limitations under the License.
  */
 
-package com.moilioncircle.redis.sink.api;
+package com.moilioncircle.redis.sink.api.parse;
 
 import java.io.File;
 import java.io.IOException;
 
-import com.moilioncircle.redis.replicator.event.EventListener;
+import com.moilioncircle.redis.replicator.Replicator;
+import com.moilioncircle.redis.replicator.rdb.DefaultRdbVisitor;
+import com.moilioncircle.redis.replicator.rdb.RdbVisitor;
+import com.moilioncircle.redis.sink.api.ParseService;
 
 /**
  * @author Baoyi Chen
  */
-public interface SinkService extends EventListener {
+public class DefaultParseService implements ParseService {
     
-    /**
-     * ret --name name
-     * @return name name
-     */
-    String sink();
-    
-    /**
-     * ret --config config
-     * @param config config
-     * @throws IOException IOException
-     */
-    void init(File config) throws IOException;
+    @Override
+    public String parse() {
+        return "default";
+    }
+
+    @Override
+    public void init(File config) throws IOException {
+
+    }
+
+    @Override
+    public RdbVisitor getVisitor(Replicator replicator) {
+        return new DefaultRdbVisitor(replicator);
+    }
 }
