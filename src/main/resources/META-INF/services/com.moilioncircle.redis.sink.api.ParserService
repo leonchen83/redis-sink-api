@@ -1,0 +1,2 @@
+com.moilioncircle.redis.sink.api.parser.DefaultParserService
+com.moilioncircle.redis.sink.api.parser.DumpParserService

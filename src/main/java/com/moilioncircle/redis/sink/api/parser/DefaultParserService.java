@@ -14,24 +14,24 @@
  * limitations under the License.
  */
 
-package com.moilioncircle.redis.sink.api.parse;
+package com.moilioncircle.redis.sink.api.parser;
 
 import java.io.File;
 import java.io.IOException;
 
 import com.moilioncircle.redis.replicator.Replicator;
+import com.moilioncircle.redis.replicator.rdb.DefaultRdbVisitor;
 import com.moilioncircle.redis.replicator.rdb.RdbVisitor;
-import com.moilioncircle.redis.replicator.rdb.dump.DumpRdbVisitor;
-import com.moilioncircle.redis.sink.api.ParseService;
+import com.moilioncircle.redis.sink.api.ParserService;
 
 /**
  * @author Baoyi Chen
  */
-public class DumpParseService implements ParseService {
+public class DefaultParserService implements ParserService {
     
     @Override
-    public String parse() {
-        return "dump";
+    public String parser() {
+        return "default";
     }
 
     @Override
@@ -46,6 +46,6 @@ public class DumpParseService implements ParseService {
 
     @Override
     public RdbVisitor getRdbVisitor(Replicator replicator) {
-        return new DumpRdbVisitor(replicator);
+        return new DefaultRdbVisitor(replicator);
     }
 }

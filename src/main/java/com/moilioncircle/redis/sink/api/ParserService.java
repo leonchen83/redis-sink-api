@@ -14,38 +14,41 @@
  * limitations under the License.
  */
 
-package com.moilioncircle.redis.sink.api.parse;
+package com.moilioncircle.redis.sink.api;
 
 import java.io.File;
 import java.io.IOException;
 
 import com.moilioncircle.redis.replicator.Replicator;
-import com.moilioncircle.redis.replicator.rdb.DefaultRdbVisitor;
 import com.moilioncircle.redis.replicator.rdb.RdbVisitor;
-import com.moilioncircle.redis.sink.api.ParseService;
 
 /**
  * @author Baoyi Chen
  */
-public class DefaultParseService implements ParseService {
+public interface ParserService {
     
-    @Override
-    public String parse() {
-        return "default";
-    }
+    /**
+     * ret --parser parser
+     * @return parser parser
+     */
+    String parser();
 
-    @Override
-    public void init(File config) throws IOException {
+    /**
+     * ret --config config
+     * @param config config
+     * @throws IOException IOException
+     */
+    void init(File config) throws IOException;
 
-    }
-
-    @Override
-    public Replicator wrap(Replicator replicator) {
-        return replicator;
-    }
-
-    @Override
-    public RdbVisitor getRdbVisitor(Replicator replicator) {
-        return new DefaultRdbVisitor(replicator);
-    }
+    /**
+     * @param replicator replicator
+     * @return Replicator replicator
+     */
+    Replicator wrap(Replicator replicator);
+    
+    /**
+     * @param replicator replicator
+     * @return RdbVisitor RdbVisitor
+     */
+    RdbVisitor getRdbVisitor(Replicator replicator);
 }
