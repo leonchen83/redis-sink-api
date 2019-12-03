@@ -69,7 +69,7 @@ public class AsyncEventListener implements EventListener {
             // 3
             this.executors = new ScheduledExecutorService[threads];
             for (int i = 0; i < this.executors.length; i++) {
-                this.executors[i] = Executors.newSingleThreadScheduledExecutor(factory);
+                this.executors[i] = Executors.newSingleThreadExecutor(factory);
             }
 
             r.addCloseListener(rep -> {
