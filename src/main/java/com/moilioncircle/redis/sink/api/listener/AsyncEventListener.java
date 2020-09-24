@@ -23,7 +23,6 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 
 import com.moilioncircle.redis.replicator.Replicator;
@@ -67,7 +66,7 @@ public class AsyncEventListener implements EventListener {
             });
 
             // 3
-            this.executors = new ScheduledExecutorService[threads];
+            this.executors = new ExecutorService[threads];
             for (int i = 0; i < this.executors.length; i++) {
                 this.executors[i] = Executors.newSingleThreadExecutor(factory);
             }
