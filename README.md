@@ -1,5 +1,7 @@
 # redis-sink-api
 
+**DEPRECATED** replaced by [redis-rdb-cli-api](https://github.com/leonchen83/redis-rdb-cli-api)  
+
 This project used in [redis-rdb-cli](https://github.com/leonchen83/redis-rdb-cli) as user define sink service API.
 
 ## How to implement a sink service
